@@ -2,7 +2,7 @@
 
 ## which allows you to manage members, documents and borrowings from a library
 
-## technologies :
+## Technologie used in this project :
 
 # JAVA/JEE
 # SPRING BOOT 
