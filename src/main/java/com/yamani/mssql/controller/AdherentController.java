@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yamani.mssql.model.Adherent;
 import com.yamani.mssql.repository.AdherentRepository;
 
-@CrossOrigin(origins = "http://localhost:8080")
+//@CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/adherent")
 public class AdherentController {
 
 	@Autowired
@@ -97,7 +96,7 @@ public class AdherentController {
 		}
 	}
 
-	@DeleteMapping("/adherent/{id}")
+	@DeleteMapping("/deleteAdherent/{id}")
 	public ResponseEntity<HttpStatus> deleteadherent(@PathVariable("id") long id) {
 		try {
 			adherentRepository.deleteById(id);
