@@ -1,4 +1,4 @@
-/*
+
 package com.yamani.mssql.model;
 
 import java.sql.Date;
@@ -8,65 +8,50 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
-@Table(name = "emprunter")
-public class Emprunter {
+
+//@Table(name = "emprunter")
+
+public class Emprunte {
 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
+    //@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@Column(name = "date_emprunt")
-	private Date date_emprunt;
+	private java.util.Date date_emprunt;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
+    //@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@Column(name = "date_retoure")
-	private Date date_retoure;
+	private java.util.Date date_retoure;
 	
 	
-	@OneToOne
-	@JoinColumn(name = "titre")
+	@OneToOne	
 	private Document document;
 	
 	@OneToOne
-	@JoinColumn(name = "cin")
 	private Adherent adherent;
 
-	public Emprunter(Date date_emprunt, Adherent adherent, Document document) {
-		this.date_emprunt = date_emprunt;
-		this.adherent = adherent;
-		this.document = document;
-	}
-
-	public Emprunter(Date date_emprunt, Date date_retoure, Adherent adherent, Document document) {
+	public Emprunte(java.util.Date date_emprunte, java.util.Date date_retoure, Adherent adherent, Document document) {
 	
-		this.date_emprunt = date_emprunt;
+		this.date_emprunt = date_emprunte;
 		this.date_retoure = date_retoure;
 		this.adherent = adherent;
 		this.document = document;
 	}
 
-	public Emprunter() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Emprunte() {
 	}
 
-	public Emprunter(Date date_emprunt, Date date_retoure) {
-		super();
-		this.date_emprunt = date_emprunt;
-		this.date_retoure = date_retoure;
-	}
-
-	public Date getDate_retoure() {
+	
+	public java.util.Date getDate_retoure() {
 		return date_retoure;
 	}
 
@@ -82,7 +67,7 @@ public class Emprunter {
 		this.id = id;
 	}
 
-	public Date getDate_emprunt() {
+	public java.util.Date getDate_emprunt() {
 		return date_emprunt;
 	}
 
@@ -109,4 +94,3 @@ public class Emprunter {
 	
 
 }
-*/

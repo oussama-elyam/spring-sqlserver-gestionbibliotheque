@@ -38,7 +38,7 @@ public class RevueControlleur {
 
 		try {
 			Revue _revue = revueRepository
-					.save(new Revue(revue.getTitre(), revue.getPrix(),revue.getNbrExpl(), revue.getAuteur(),revue.getTypeDoc(), revue.getDisponible()));
+					.save(new Revue(revue.getTitre(), revue.getPrix(),revue.getNbrExpl(), revue.getAuteur(), revue.getDisponible()));
 			return new ResponseEntity<>(_revue, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -102,7 +102,6 @@ public class RevueControlleur {
 			_revue.setPrix(revue.getPrix());
 			_revue.setNbrExpl(revue.getNbrExpl());
 			_revue.setAuteur(revue.getAuteur());
-			_revue.setTypeDoc(revue.getTypeDoc());
 			_revue.setDisponible(revue.getDisponible());
 
 			return new ResponseEntity<>(revueRepository.save(_revue), HttpStatus.OK);

@@ -36,7 +36,7 @@ public class LivreController {
 
 		try {
 			Livre _livre = livreRepository
-					.save(new Livre(livre.getTitre(), livre.getPrix(),livre.getNbrExpl(), livre.getAuteur(),livre.getTypeDoc(), livre.getDisponible(),livre.getPages()));
+					.save(new Livre(livre.getTitre(), livre.getPrix(),livre.getNbrExpl(), livre.getAuteur(), livre.getDisponible(),livre.getPages()));
 			return new ResponseEntity<>(_livre, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -100,7 +100,6 @@ public class LivreController {
 			_livre.setPrix(livre.getPrix());
 			_livre.setNbrExpl(livre.getNbrExpl());
 			_livre.setAuteur(livre.getAuteur());
-			_livre.setTypeDoc(livre.getTypeDoc());
 			_livre.setDisponible(livre.getDisponible());
 			_livre.setPages(livre.getPages());
 

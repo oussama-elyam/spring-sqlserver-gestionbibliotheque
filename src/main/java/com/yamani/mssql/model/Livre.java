@@ -11,8 +11,8 @@ public class Livre extends Document {
 	@Column(name = "pages")
 	private int pages;
 	
-	public Livre(String titre, float prix, int nbrExpl, String auteur, String typeDoc ,Boolean disponible ,int pages) {
-		super(titre, prix, nbrExpl, auteur, typeDoc ,disponible);
+	public Livre(String titre, float prix, int nbrExpl, String auteur ,Boolean disponible ,int pages) {
+		super(titre, prix, nbrExpl, auteur ,disponible);
 		this.setPages(pages);
 		}
 	

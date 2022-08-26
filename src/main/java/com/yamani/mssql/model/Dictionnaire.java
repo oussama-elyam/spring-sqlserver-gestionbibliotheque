@@ -9,8 +9,8 @@ public class Dictionnaire extends Document {
 	
 	private String langue;
 	
-	public Dictionnaire(String titre, float prix, int nbrExpl, String auteur, String typeDoc ,Boolean disponible ,String langue) {
-		super(titre, prix, nbrExpl, auteur, typeDoc ,disponible);
+	public Dictionnaire(String titre, float prix, int nbrExpl, String auteur,Boolean disponible ,String langue) {
+		super(titre, prix, nbrExpl, auteur ,disponible);
 		this.langue = langue;
 		}
 	

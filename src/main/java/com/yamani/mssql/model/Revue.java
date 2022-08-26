@@ -8,8 +8,8 @@ import javax.persistence.Table;
 public class Revue extends Document {
 	
 	
-	public Revue( String titre, float prix, int nbrExpl, String auteur , String typeDoc,Boolean disponible) {
-		super( titre, prix, nbrExpl, auteur, typeDoc, disponible);
+	public Revue( String titre, float prix, int nbrExpl, String auteur ,Boolean disponible) {
+		super( titre, prix, nbrExpl, auteur, disponible);
 		}
 	
 	public Revue() {

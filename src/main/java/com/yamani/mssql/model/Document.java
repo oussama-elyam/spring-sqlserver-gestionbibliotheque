@@ -1,12 +1,14 @@
 package com.yamani.mssql.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
+//@MappedSuperclass
+@Entity
+
 public abstract class Document {
 
 	@Id
@@ -25,20 +27,20 @@ public abstract class Document {
 	@Column(name = "auteur")
 	private String auteur;
 	
-	@Column(name = "typeDoc")
-	private String typeDoc;
+	//@Column(name = "typeDoc")
+	//private String typeDoc;
 	
 	@Column(name = "disponible")
 	private Boolean disponible;
 	
-	
-	public Document(String titre, float prix, int nbrExpl, String auteur, String typeDoc ,Boolean disponible) {
+
+	public Document(String titre, float prix, int nbrExpl, String auteur ,Boolean disponible) {
 		
 		this.titre = titre;
 		this.prix = prix;
 		this.nbrExpl = nbrExpl;
 		this.auteur = auteur;
-		this.typeDoc = typeDoc;
+		//this.typeDoc = typeDoc;
 		this.disponible = disponible;
 	}
 	
@@ -78,13 +80,6 @@ public abstract class Document {
 		this.auteur = auteur;
 	}
 
-	public String getTypeDoc() {
-		return typeDoc;
-	}
-
-	public void setTypeDoc(String typeDoc) {
-		this.typeDoc = typeDoc;
-	}
 
 	public Boolean getDisponible() {
 		return disponible;
@@ -97,7 +92,7 @@ public abstract class Document {
 	@Override
 	public String toString() {
 		return "Document [id=" + id + ", titre=" + titre + ", prix=" + prix + ", nbrExpl=" + nbrExpl + ", auteur="
-				+ auteur + ", typeDoc=" + typeDoc + ", disponible=" + disponible + "]";
+				+ auteur + ", disponible=" + disponible + "]";
 	}
 	
 	

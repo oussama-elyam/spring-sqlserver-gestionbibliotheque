@@ -39,7 +39,7 @@ public class DictionnaireControlleur {
 
 		try {
 			Dictionnaire _dictionnaire = dictionnaireRepository
-					.save(new Dictionnaire(dictionnaire.getTitre(), dictionnaire.getPrix(),dictionnaire.getNbrExpl(), dictionnaire.getAuteur(),dictionnaire.getTypeDoc(), dictionnaire.getDisponible(),dictionnaire.getLangue()));
+					.save(new Dictionnaire(dictionnaire.getTitre(), dictionnaire.getPrix(),dictionnaire.getNbrExpl(), dictionnaire.getAuteur(), dictionnaire.getDisponible(),dictionnaire.getLangue()));
 			return new ResponseEntity<>(_dictionnaire, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -103,7 +103,6 @@ public class DictionnaireControlleur {
 			_dictionnaire.setPrix(dictionnaire.getPrix());
 			_dictionnaire.setNbrExpl(dictionnaire.getNbrExpl());
 			_dictionnaire.setAuteur(dictionnaire.getAuteur());
-			_dictionnaire.setTypeDoc(dictionnaire.getTypeDoc());
 			_dictionnaire.setDisponible(dictionnaire.getDisponible());
 			_dictionnaire.setLangue(dictionnaire.getLangue());
 

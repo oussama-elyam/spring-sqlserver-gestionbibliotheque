@@ -14,7 +14,7 @@
 	<name>spring-boot-sql-server</name>
 	<description>Spring Boot + SQL Server (MSSQL) example with JPA</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -42,10 +42,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
