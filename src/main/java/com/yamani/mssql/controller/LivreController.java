@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yamani.mssql.model.Livre;
@@ -61,7 +60,7 @@ public class LivreController {
 	}
 	
 	@GetMapping("/listeLivre")
-	public ResponseEntity<List<Livre>> getAllLivre(@RequestParam(required = false) String title) {
+	public ResponseEntity<List<Livre>> getAllLivre() {
 		try {
 			List<Livre> livre = new ArrayList<Livre>();
 

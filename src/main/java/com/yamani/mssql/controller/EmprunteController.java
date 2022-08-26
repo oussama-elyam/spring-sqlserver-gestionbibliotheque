@@ -1,11 +1,15 @@
 package com.yamani.mssql.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,12 +38,8 @@ public class EmprunteController {
 	@RequestMapping(path = "/addEmprunte/{id}/{cin}",method = RequestMethod.POST)
 	public ResponseEntity<Emprunte> createemprunte(@PathVariable("id") long doc_id ,@PathVariable("cin") long ad_id) {
 		
-		//get date today automatically
-		//set date today to variable date_emprunte
-		//calculate date_retoure
 		
 		long millis = System.currentTimeMillis();  
-	    // creating a new object of the class Date  
 	    Date date_emprunte = new Date(millis);      
 	    System.out.println(date_emprunte.toString());  
 	    
@@ -66,5 +66,51 @@ public class EmprunteController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	
+	@DeleteMapping("/deleteEmprunte/{id}")
+	public ResponseEntity<HttpStatus> deleteadherent(@PathVariable("id") long id) {
+		try {
+			emprunteRepository.deleteById(id);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@GetMapping("/listeEmprunte")
+	public ResponseEntity<List<Emprunte>> getAllempruntes() {
+		try {
+			List<Emprunte> emprunte = new ArrayList<Emprunte>();
 
+			
+				emprunteRepository.findAll().forEach(emprunte::add);
+			
+			if (emprunte.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+
+			return new ResponseEntity<>(emprunte, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@GetMapping("/getEmprunte/{id}")
+	public ResponseEntity<Emprunte> getemprunteById(@PathVariable("id") long id) {
+		try {
+		Optional<Emprunte> emprunteData = emprunteRepository.findById(id);
+
+		if (emprunteData.isPresent()) {
+			return new ResponseEntity<>(emprunteData.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+	} catch (Exception e) {
+		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	}
+
+	
 }
