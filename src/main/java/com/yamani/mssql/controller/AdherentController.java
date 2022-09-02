@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,21 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yamani.mssql.model.Adherent;
 import com.yamani.mssql.repository.AdherentRepository;
 
-//@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/adherent")
 public class AdherentController {
 
 	@Autowired
 	AdherentRepository adherentRepository;
+	
 
 	@GetMapping("/listeAdherent")
 	public ResponseEntity<List<Adherent>> getAlladherents() {
 		try {
 			List<Adherent> adherent = new ArrayList<Adherent>();
-
-			
-				adherentRepository.findAll().forEach(adherent::add);
+			adherentRepository.findAll().forEach(adherent::add);
 			
 			if (adherent.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -45,7 +45,7 @@ public class AdherentController {
 		}
 	}
 
-	@GetMapping("/adherent/{id}")
+	@GetMapping("/getById/{id}")
 	public ResponseEntity<Adherent> getadherentById(@PathVariable("id") long id) {
 		try {
 		Optional<Adherent> adherentData = adherentRepository.findById(id);
@@ -61,6 +61,21 @@ public class AdherentController {
 	}
 	}
 
+
+	@GetMapping("/getByCin/{cin}")
+	public ResponseEntity<Adherent> findByCin(@PathVariable("cin") String cin) {
+		try {
+			Optional<Adherent> adherent = adherentRepository.findByCin(cin);
+			if (adherent.isPresent()) {
+				return new ResponseEntity<>(adherent.get(), HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	@PostMapping("/addAdherent")
 	public ResponseEntity<Adherent> createadherent(@RequestBody Adherent adherent) {
 		System.out.println(adherent);
@@ -116,18 +131,5 @@ public class AdherentController {
 
 	}
 
-	/* @GetMapping("/adherents/published")
-	public ResponseEntity<List<Adherent>> findByPublished() {
-		try {
-			List<Adherent> adherents = adherentRepository.findByPublished(true);
 
-			if (adherents.isEmpty()) {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<>(adherents, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	} */
-
-}
+	}
