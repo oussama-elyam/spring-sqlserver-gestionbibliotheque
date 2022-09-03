@@ -20,4 +20,4 @@
         - [http://localhost:8080/v2/api-docs]
 
 ## visite my frontend repo developed with *Reactjs*
-   - url of the repo : (later)
+   - url of the repo : https://github.com/oussama-elyam/LibraryRestApi
